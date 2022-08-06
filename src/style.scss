@@ -1,34 +1,50 @@
-.header-bg {
+%content-width {
+  width: 100%;
+  max-width: 1240px;
+  margin: auto;
+}
+.header {
   $header--height: 100px;
   $header__logo--padding: 16px;
   $header__logo-tiki--width: 60px;
   $header__logo-freeship--width: 83px;
 
-  background-color: #0080ff;
+  background-color: dodgerblue;
   height: $header--height;
-  .header {
-    width: 100%;
-    max-width: 1240px;
+  &__content {
+    @extend %content-width;
     margin: auto;
     background-color: green;
   }
-  .logo {
+  &__logo {
     display: inline-block;
     height: 100px;
     margin: 0px 120px 0px 0px;
-    
-    .logo-tiki {
+
+    &-tiki {
       width: $header__logo-tiki--width;
       height: auto;
     }
-    .logo-freeship {
+    &-freeship {
       width: $header__logo-freeship--width;
       height: auto;
       position: relative;
     }
   }
-  .timkiem {
+  &__timkiem {
     width: 100%;
     max-width: 400px;
   }
+  &__banhang {
+    background-color: skyblue;
+    color: white;
+    border: none;
+    border-radius: 10px;
+  }
+}
+.footer {
+  @extend %content-width;
+}
+.goi-y-hom-nay {
+  @extend %content-width;
 }
