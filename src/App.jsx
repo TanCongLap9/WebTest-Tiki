@@ -1,12 +1,12 @@
 import * as React from 'react';
-import Header from '../components/header.js';
-import Footer from '../components/footer.js';
-import GoiYHomNay from '../components/goiYHomNay.js';
+import Header from '../components/header';
+import Footer from '../components/footer';
+import GoiYHomNay from '../components/goiYHomNay';
 import './style.scss';
 
 const App = () => (
   <>
-    <GoiYHomNay />
+    <Header />
   </>
 );
 export default App;
