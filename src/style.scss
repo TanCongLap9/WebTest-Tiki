@@ -1,14 +1,18 @@
+@use "sass:math";
 .widthlimit {
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
 }
+body {
+  background-color: green;
+}
 .whitetext {
   font: 12px sans-serif;
   color: white;
 }
-$header--height: 100px;
 .header {
+  $header--height: 100px;
   $header__logo--padding: 16px;
 
   background-color: dodgerblue;
@@ -31,33 +35,35 @@ $header--height: 100px;
   }
   &__bottom {
     margin: auto;
-    height: $header--height/2;
+    height: 50%;
     display: flex;
     align-items: center;
   }
   &__logotop {
+    $tiki-width: 60px;
     display: flex;
-    margin: 0px 120px 0px 0px;
-    $header__logo-tiki--width: 60px;
+    box-sizing: border-box;
+    margin: 0 {right: 206px - $tiki-width;};
 
     &-tiki {
-      width: $header__logo-tiki--width;
+      width: $tiki-width;
       height: auto;
     }
   }
   &__logobottom {
+    $freeship-width: 83px;
     display: flex;
-    align-items: stretch;
-    margin: 0px 120px 0px 0px;
-    $header__logo-freeship--width: 83px;
+    box-sizing: border-box;
+    margin: 0 {right: 206px - $freeship-width;};
 
     &-freeship {
-      width: $header__logo-freeship--width;
+      width: $freeship-width;
       height: auto;
     }
   }
   &__dangnhap {
     display: flex;
+    width: 300px;
     &-logo{
       width: 28px;
       height: 28px;
@@ -72,11 +78,11 @@ $header--height: 100px;
     }
   }
   &__formtimkiem {
+    display: flex;
     width: 100%;
   }
   &__timkiem {
     width: 100%;
-    max-width: 400px;
     height: 40px;
     padding: 0 10px;
     border: none;
@@ -92,15 +98,53 @@ $header--height: 100px;
     height: 40px;
   }
   &__banhang {
-    background-color: skyblue;
-    border: none;
-    border-radius: 10px;
+    display: flex;
+    justify-content: flex-end;
+    &-nut {
+      background-color: skyblue;
+      border: none;
+      border-radius: 10px;
+    }
   }
   &__theloai {
     table-layout: auto;
     td {
       padding: 0 8px 0 0;
     }
+  }
+}
+.cactheloai {
+  $cactheloai--height: 44px;
+  position: relative;
+  background-color: white;
+  &__content {
+    overflow: hidden;
+    white-space: nowrap;
+    transition: 1s;
+    &-button {
+      height: $cactheloai--height;
+      padding: 0px 10px;
+      font-size: 11pt;
+      border: none;
+      background-color: transparent;
+    }
+  }
+  &__left {
+    height: $cactheloai--height;
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  &__right {
+    position: absolute;
+    height: $cactheloai--height;
+    right: 0px;
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    cursor: pointer;
   }
 }
 .footer {

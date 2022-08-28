@@ -4,8 +4,8 @@ import * as ReactQuery from 'react-query';
 const fetcher = url => fetch(url).then(response => response.json());
 const queryClient = new ReactQuery.QueryClient;
 const TimKiemTheoTheLoai = (props) => {
-  const {data: theLoai, loading, onError} = ReactQuery.useQuery(["data1"], fetcher.bind(undefined, props.theLoai));
-  if (loading || theLoai === undefined) return <p>Loading</p>
+  const {data: theLoai} = ReactQuery.useQuery([], fetcher.bind(undefined, props.theLoai));
+  if (theLoai === undefined) return <table className="header__theloai whitetext"><span>Loading</span></table>
   return (
     <table className="header__theloai whitetext">
       <tbody>
@@ -62,10 +62,12 @@ const GioHang = () => (
 )
 
 const BanHang = () => (
-  <button className="header__banhang whitetext">
-    <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icon-seller.svg" />
-    Bán hàng cùng Tiki
-  </button>
+  <div className="header__banhang whitetext">
+    <button className="header__banhang-nut whitetext">
+      <img src="https://frontend.tikicdn.com/_desktop-next/static/img/icon-seller.svg" />
+      Bán hàng cùng Tiki
+    </button>
+  </div>
 )
 const [LeftSide, RightSide] = ["header__leftside", "header__rightside"].map(v => props => <div className={v}>{props.children}</div>)
 
