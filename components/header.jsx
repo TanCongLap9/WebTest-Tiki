@@ -4,40 +4,36 @@ import * as ReactQuery from 'react-query';
 const fetcher = url => fetch(url).then(response => response.json());
 const queryClient = new ReactQuery.QueryClient;
 const TimKiemTheoTheLoai = (props) => {
-  const {data: theLoai, loading, error} = ReactQuery.useQuery(["data1"], fetcher.bind(undefined, props.theLoai));
-  if (error) return <p>Error: {error}</p>
+  const {data: theLoai, loading, onError} = ReactQuery.useQuery(["data1"], fetcher.bind(undefined, props.theLoai));
   if (loading || theLoai === undefined) return <p>Loading</p>
   return (
     <table className="header__theloai whitetext">
       <tbody>
         <tr>
-        {theLoai.map(v => (
-            <td><span>{v.name}</span></td>
-          ))}
+        {theLoai.data?.map(v => <td><span>{v.name}</span></td>)}
         </tr>
       </tbody>
     </table>
   );
 }
 const Logo = (props) => (
-  <div className="header__logo">{
     props.logo === "top" ?
-    <img
-      className="header__logo-tiki"
-      src="https://salt.tikicdn.com/ts/upload/ae/f5/15/2228f38cf84d1b8451bb49e2c4537081.png"
-      alt="Tiki"
-    />
-    : props.logo === "bottom" ? <img
-      className="header__logo-freeship"
+    <div className="header__logotop">
+      <img
+        className="header__logotop-tiki"
+        src="https://salt.tikicdn.com/ts/upload/ae/f5/15/2228f38cf84d1b8451bb49e2c4537081.png"
+        alt="Tiki"
+      />
+    </div>
+    : props.logo === "bottom" ? <div className="header__logobottom"><img
+      className="header__logobottom-freeship"
       src="https://salt.tikicdn.com/ts/upload/e5/1d/22/61ff572362f08ead7f34ce410a4a6f96.png"
       alt="Freeship"
-    /> : undefined
-    }
-  </div>
+    /></div> : undefined
 )
 const TimKiem = (props) => (
   props.mucTheLoai ? <TimKiemTheoTheLoai theLoai={props.theLoai}/> :
-  <form>
+  <form className="header__formtimkiem">
     <input
       className="header__timkiem"
       type="search"
@@ -71,19 +67,20 @@ const BanHang = () => (
     Bán hàng cùng Tiki
   </button>
 )
+const [LeftSide, RightSide] = ["header__leftside", "header__rightside"].map(v => props => <div className={v}>{props.children}</div>)
 
 const Header = () => (
   <ReactQuery.QueryClientProvider client={queryClient}>
     <header className="header">
       <div className="header__top widthlimit">
         <Logo logo="top"/>
-        <TimKiem theLoai="https://62ecdb67818ab252b603f9f3.mockapi.io/header__theloai" mucTheLoai={false}/>
+        <TimKiem mucTheLoai={false}/>
         <DangNhap/>
         <GioHang/>
       </div>
       <div className="header__bottom widthlimit">
         <Logo logo="bottom"/>
-        <TimKiem theLoai="https://62ecdb67818ab252b603f9f3.mockapi.io/header__theloai" mucTheLoai={true}/>
+        <TimKiem mucTheLoai={true} theLoai="https://62ecdb67818ab252b603f9f3.mockapi.io/data/theLoai"/>
         <BanHang/>
       </div>
     </header>

@@ -10,31 +10,47 @@
 .header {
   $header--height: 100px;
   $header__logo--padding: 16px;
-  $header__logo-tiki--width: 60px;
-  $header__logo-freeship--width: 83px;
 
   background-color: dodgerblue;
   height: $header--height;
   display: flex;
   flex-flow: column;
+  &__leftside {
+    display: flex;
+    justify-content: flex-start;
+  }
+  &__rightside {
+    display: flex;
+    justify-content: flex-end;
+  }
   &__top {
     margin: auto;
+    height: 50%;
     display: flex;
     align-items: center;
   }
   &__bottom {
     margin: auto;
+    height: $header--height/2;
     display: flex;
     align-items: center;
   }
-  &__logo {
-    height: 100px;
+  &__logotop {
+    display: flex;
     margin: 0px 120px 0px 0px;
+    $header__logo-tiki--width: 60px;
 
     &-tiki {
       width: $header__logo-tiki--width;
       height: auto;
     }
+  }
+  &__logobottom {
+    display: flex;
+    align-items: stretch;
+    margin: 0px 120px 0px 0px;
+    $header__logo-freeship--width: 83px;
+
     &-freeship {
       width: $header__logo-freeship--width;
       height: auto;
@@ -54,6 +70,9 @@
       width: 28px;
       height: 28px;
     }
+  }
+  &__formtimkiem {
+    width: 100%;
   }
   &__timkiem {
     width: 100%;
