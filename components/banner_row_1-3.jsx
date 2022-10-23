@@ -57,7 +57,7 @@ const BannersRow2 = () => {
     <div className="banners_row_2 widthlimit">
       <div className="banners_row_2__giasochomnay">
         <table><tr>
-          {banner14Items?.data.map(({ src: imageUrl }, index) => (
+          {banner5Items?.data.map(({ src: imageUrl }, index) => (
             <img
               className="banners_row_2__mathang"
               src={imageUrl}
@@ -68,21 +68,24 @@ const BannersRow2 = () => {
       </div>
       <div className="banners_row_2__banner5items">
         <table><tr>
-        {banner5Items?.data.map(({ image: imageUrl, video: videoUrl }, index) => (
-          <td
-            className="banners_row_2__item"
-            key={`banners_row_2_item${index}`}
-          >{video?
-            <video><source src={videoUrl}></source></video>
-          : <img src={imageUrl}/>}</td>
-        ))}</tr></table></div>
+          {banner5Items?.data.map(({ image: imageUrl, video: videoUrl }, index) => (
+            <td
+              className="banners_row_2__item"
+              key={`banners_row_2_item${index}`}
+            >{videoUrl?
+              <video src={videoUrl} poster={imageUrl || ""} height="275px" width="auto" controls={true}></video>
+            : <img src={imageUrl} height="275px" width="auto"/>}</td>
+          ))}
+        </tr></table>
+      </div>
     </div>
   );
 };
 
 const BannersRows123 = () => (
   <ReactQuery.QueryClientProvider client={queryClient}>
-    <BannersRow1 />
+    <BannersRow2 />
+    
   </ReactQuery.QueryClientProvider>
 );
-exports.default = BannersRow1;
+exports.default = BannersRows123;
