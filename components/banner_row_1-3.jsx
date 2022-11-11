@@ -5,6 +5,7 @@ const fetcher = (url) => fetch(url).then((response) => response.json());
 const queryClient = new ReactQuery.QueryClient();
 
 const BannersRow1 = () => {
+  let [currentItem, setCurrentItem] = React.useState(0);
   const { data: banner14Items } = ReactQuery.useQuery(
       ['banners14Items'],
       fetcher.bind(
@@ -24,6 +25,17 @@ const BannersRow1 = () => {
   return (
     <div className="banners_row_1 widthlimit">
       <div className="banners_row_1__14_items">
+        <button className="banners_row_1__prev" onClick={() => {
+          if (!currentItem) return;
+          setCurrentItem(currentItem - 1);
+          console.log(`Item: ${currentItem}`);
+        }}>&lt;</button>
+        <button className="banners_row_1__next" onClick={() => {
+          if (currentItem >= 13) return;
+          setCurrentItem(currentItem + 1);
+          document.getElementsByClassName("banners_row_1__14_items").style
+          console.log(`Item: ${currentItem}`);
+        }}>&gt;</button>
         {banner14Items?.data.map(({ src: imageUrl }, index) => (
           <img
             className="banners_row_1__item"
@@ -84,6 +96,7 @@ const BannersRow2 = () => {
 
 const BannersRows123 = () => (
   <ReactQuery.QueryClientProvider client={queryClient}>
+    <BannersRow1 />
     <BannersRow2 />
     
   </ReactQuery.QueryClientProvider>
